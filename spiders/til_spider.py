@@ -13,7 +13,8 @@ class StackSpider(Spider):
         links = response.xpath('//div/a[@class="SQnoC3ObvgnGjWt90zD9Z _2INHSNB8V5eaWp4P0rY_mE"]//@href').extract()
 
         for i in range(len(titles)):
-            item = TILItem()
-            item['title'] = titles[i]
-            item['url'] = links[i]
-            yield item
+            if (titles[i].startswith('TIL')):
+                item = TILItem()
+                item['title'] = titles[i]
+                item['url'] = links[i]
+                yield item
